@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Navbar.jsx", "pages/_app.tsx", "pages/index.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Navbar.jsx", "pages/_app.tsx", "pages/index.tsx", "hooks/useLivePeer.js"],
   "exclude": ["node_modules"]
 }
