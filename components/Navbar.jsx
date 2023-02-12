@@ -71,7 +71,6 @@ export default function Navbar() {
 
             {/* TODO: Main content here */}
             <div class="p-4 sm:ml-64">
-                
             </div>
         </>
 
