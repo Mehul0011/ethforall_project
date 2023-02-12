@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const LivePeer = () => {
+const useLivePeer = () => {
     const httpClient = axios.create({
-        baseURL: 'https://livepeer.studio',
+        baseURL: 'https://livepeer.studio/api',
     });
 
     httpClient.interceptors.request.use(
@@ -23,13 +23,39 @@ const LivePeer = () => {
 
 
 
+    const getAllStreams = async () => {
+        try {
+            const allStreams = [];
+            const response = await httpClient.get('/stream');
+            // const response = await axios.get('https://livepeer.studio/api/stream', headers);
+
+            console.log("streams", response.data);
+            return response.data;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     const getAllSessions = async () => {
         try {
             const allStreams = [];
-            const response = await httpClient.get('/api/stream');
+            const response = await httpClient.get('/session');
             // const response = await axios.get('https://livepeer.studio/api/stream', headers);
 
-            console.log("session aajao", response.data);
+            console.log("sessions", response.data);
+            return response.data;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const getAllAssets = async () => {
+        try {
+            const allStreams = [];
+            const response = await httpClient.get('/asset');
+            // const response = await axios.get('https://livepeer.studio/api/stream', headers);
+
+            console.log("assets", response.data);
             return response.data;
         } catch (err) {
             console.error(err);
@@ -37,8 +63,8 @@ const LivePeer = () => {
     }
 
 
-    return { getAllSessions };
+    return { getAllSessions, getAllStreams, getAllAssets };
 
 }
 
-export default LivePeer;
+export default useLivePeer;

@@ -1,11 +1,13 @@
 import { Player, useCreateStream } from '@livepeer/react';
 
 import { useMemo, useState, useEffect } from 'react';
-import LivePeer from '@/hooks/useLivePeer';
+import useLivePeer from '@/hooks/useLivePeer';
 
 export default function StreamNow() {
   const [streamName, setStreamName] = useState<string>('');
   const [playbackIds, setPlaybackIds] = useState([]);
+  const livePeer = useLivePeer();
+  // const [player, setPlayer] = useState(<></>);
   const {
     mutate: createStream,
     data: stream,
@@ -21,14 +23,28 @@ export default function StreamNow() {
   const getPlayBackIds = async () => {
     console.log("called");
     try {
-      const response = await LivePeer().getAllSessions()
+      const response = await livePeer.getAllAssets();
       // @ts-ignore
-      setPlaybackIds(() => response.map((stream) => stream.playbackId));
-
+      setPlaybackIds(response);
     } catch (error) {
-
+      console.error(error);
     }
   }
+
+  // @ts-ignore
+  // const playNow = (streamName, id) => {
+  //   console.log("lets play this")
+  //   return (
+  //     setPlayer(<Player
+  //       title={streamName as any}
+  //       playbackId={id as any}
+  //       autoPlay
+  //       muted
+  //     />)
+      
+  //   )
+
+  // }
 
   return (
     <div className="h-screen w-70 z-100 bg-red">
@@ -50,17 +66,24 @@ export default function StreamNow() {
       <button onClick={getPlayBackIds}>
         Get All Playback Ids
       </button>
+      <br />
 
       {
-        playbackIds !== undefined && playbackIds.map(id => {
-          if (id)
+        playbackIds !== undefined && playbackIds.map(stream => {
+          console.log("id", stream.playbackId)
+          if (stream.playbackId)
             return (
-              <Player
-                title={stream?.name}
-                playbackId={stream?.playbackId}
-                autoPlay
-                muted
-              />
+              <>
+                {/* <button onClick={() => playNow("live Now", id)}> Play Now {id}</button> */}
+                {/* {player} */}
+                <Player
+                  title={stream.name}
+                  playbackId={stream.playbackId}
+                  autoPlay
+                  muted
+                />
+                <br />
+              </>
             )
           else return <></>
         })
