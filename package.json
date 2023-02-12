@@ -9,15 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@arcana/auth": "^1.0.0",
+    "@arcana/auth-react": "^0.0.3",
+    "@arcana/auth-wagmi": "^0.0.1",
     "@next/font": "13.1.6",
     "@types/node": "18.11.19",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "clsx": "^1.2.1",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
+    "react-modal": "^3.16.1",
     "typescript": "4.9.5"
   },
   "devDependencies": {
