@@ -14,7 +14,7 @@ module.exports = {
         transparent: 'transparent',
         primary: "#00b89f",
         appBackground: "#44475a",
-        backgroundPaper: "#1f212e",
+        backgroundPaper: "#000",
         sidebar: '#1f212e',
 
         // text colors

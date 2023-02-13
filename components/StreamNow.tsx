@@ -41,18 +41,22 @@ export default function StreamNow() {
   //       autoPlay
   //       muted
   //     />)
-      
+
   //   )
 
   // }
 
   return (
-    <div className="h-screen z-100 bg-red">
-      <input
-        type="text"
-        placeholder="Stream name"
-        onChange={(e) => setStreamName(e.target.value)}
-      />
+    <div className="h-screen z-100 p-10" >
+      <h1 className="text-3xl font-bold pb-2 mb-4">Livestream</h1>
+      <div className="mb-6">
+        <input
+          type="text"
+          id="default-input"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Stream name"
+          onChange={(e) => setStreamName(e.target.value)} />
+      </div>
 
       {stream?.playbackId && (
         <Player
@@ -62,6 +66,20 @@ export default function StreamNow() {
           muted
         />
       )}
+
+      <div>
+        {!stream && (
+          <button
+            className="px-6 py-2 text-white text-xl font-semibold rounded-md bg-gradient-to-r from-emerald-500 to-sky-600"
+            onClick={() => {
+              createStream?.();
+            }}
+            disabled={isLoading || !createStream}
+          >
+            Create Stream
+          </button>
+        )}
+      </div>
 
       <button onClick={getPlayBackIds}>
         Get All Playback Ids
@@ -89,20 +107,6 @@ export default function StreamNow() {
         })
 
       }
-
-
-      <div>
-        {!stream && (
-          <button
-            onClick={() => {
-              createStream?.();
-            }}
-            disabled={isLoading || !createStream}
-          >
-            Create Stream
-          </button>
-        )}
-      </div>
     </div>
   );
 };
