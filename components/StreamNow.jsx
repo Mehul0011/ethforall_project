@@ -5,10 +5,7 @@ import useLivePeer from '@/hooks/useLivePeer';
 import { FiCopy } from 'react-icons/fi';
 
 export default function StreamNow() {
-  const [streamName, setStreamName] = useState<string>('');
-  const [playbackIds, setPlaybackIds] = useState([]);
-  const livePeer = useLivePeer();
-  // const [player, setPlayer] = useState(<></>);
+  const [streamName, setStreamName] = useState('');
   const {
     mutate: createStream,
     data: stream,
@@ -36,18 +33,8 @@ export default function StreamNow() {
     console.log("ye hai stream", stream);
   }, [stream]);
 
-  const getPlayBackIds = async () => {
-    console.log("called");
-    try {
-      const response = await livePeer.getAllAssets();
-      // @ts-ignore
-      setPlaybackIds(response);
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
-  const Copyable = (props: any) => {
+  const Copyable = (props) => {
     const copyToClipboard = () => {
       window.navigator.clipboard.writeText(props.copyText || props.text);
     }
@@ -60,6 +47,8 @@ export default function StreamNow() {
       </span>
     )
   }
+
+
   // @ts-ignore
   // const playNow = (streamName, id) => {
   //   console.log("lets play this")
@@ -76,7 +65,7 @@ export default function StreamNow() {
   // }
 
   return (
-    <div className="h-screen z-100 p-10" >
+    <div className="h-screen z-0 p-10" >
       <h1 className="text-3xl font-bold pb-2 mb-4 ">Livestream</h1>
       {!stream && (
         <>
@@ -95,7 +84,7 @@ export default function StreamNow() {
                 <button
                   className="px-6 py-2 text-white text-xl font-semibold rounded-md bg-gradient-to-r from-emerald-500 to-sky-600"
                   onClick={() => {
-                    createStream?.();
+                    createStream?.()
                   }}
                   disabled={!createStream}
                 >
@@ -104,7 +93,7 @@ export default function StreamNow() {
               </>
             )}
             {isLoading && (
-              <div className="text-xl font-bold pb-2 mb-4">Creating Stream...</div>
+              <div className="text-xl font-bold pb-2 mb-4 text-primary">Creating Stream...</div>
             )}
           </div>
         </>
@@ -135,32 +124,6 @@ export default function StreamNow() {
           </div>
         </>
       )}
-
-      <button onClick={getPlayBackIds}>
-        Get All Playback Ids
-      </button>
-      <br />
-      {
-        playbackIds !== undefined && playbackIds.map(stream => {
-          console.log("id", stream.playbackId)
-          if (stream.playbackId)
-            return (
-              <>
-                {/* <button onClick={() => playNow("live Now", id)}> Play Now {id}</button> */}
-                {/* {player} */}
-                <Player
-                  title={stream.name}
-                  playbackId={stream.playbackId}
-                  autoPlay
-                  muted
-                />
-                <br />
-              </>
-            )
-          else return <></>
-        })
-
-      }
     </div>
   );
 };

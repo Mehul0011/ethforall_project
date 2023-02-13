@@ -1,27 +1,37 @@
 import Link from 'next/link'
 import { AiFillHome } from 'react-icons/ai'
 import { FaUpload, FaUser } from 'react-icons/fa'
+import { BsBroadcastPin } from 'react-icons/bs'
 import { useRouter } from "next/router";
-
 
 const Sidebar = () => {
     const router = useRouter();
 
     const sidebarItems = [
         {
+            name: "Home",
+            href: "/",
+            icon: <AiFillHome size={25} fill/>,
+        },
+        {
             name: "Dashboard",
             href: "/dashboard",
-            icon: <AiFillHome size={25} fill/>,
+            icon: <FaUser size={25} fill/>,
         },
         {
             name: "Stream Now",
             href: "/livestream",
-            icon: <FaUpload size={25} fill/>,
+            icon: <BsBroadcastPin size={25} fill/>,
         },
+        // {
+        //     name: "My Channel",
+        //     href: "/user",
+        //     icon: <FaUser size={25} fill/>
+        // },
         {
-            name: "My Channel",
-            href: "/video",
-            icon: <FaUser size={25} fill/>
+            name: "Mint NFT",
+            href: "/upload",
+            icon: <FaUpload size={25} fill/>
         }
     ];
     return (

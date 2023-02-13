@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Auth, useAuth } from "@arcana/auth-react";
 import ReactModal from "react-modal";
 import { FaTimes } from "react-icons/fa";
-import StreamNow from "./StreamNow";
+
 const onLogin = () => {
     // Route to authenticated page
 }
@@ -12,12 +12,13 @@ export default function Navbar() {
     const [modalOpen, setModalOpen] = useState(false);
     return (
         <>
-            <nav class="fixed top-0 z-0 w-full bg-[#FFF] border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <nav class="fixed top-0 z-1 w-full bg-[#FFF] border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <div class="px-3 py-3 lg:px-5 lg:pl-3">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center justify-start">
                             <div className="flex items-center gap-3">
-                                <h1 className="font-display font-bold text-2xl">DStream</h1>
+                            <img src="/logo.svg" class="h-8" alt="StreamHub Logo" /> 
+                                <h1 className="font-display font-bold text-2xl">StreamHub</h1>
                             </div>
                         </div>
                         <div class="flex items-center">
