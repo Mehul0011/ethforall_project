@@ -21,6 +21,7 @@ const provider = new AuthProvider(`${appAddress}`, {
 const livepeerClient = createReactClient({
   provider: studioProvider({
     apiKey: process.env.NEXT_PUBLIC_STUDIO_API_KEY as string,
+    baseUrl: 'https://livepeer.studio/api',
   }),
 });
 

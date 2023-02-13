@@ -4,6 +4,7 @@ import { Inter } from '@next/font/google'
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import StreamNow from '@/components/StreamNow'
+import Upload from '@/components/Upload'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,6 +22,7 @@ export default function Home() {
       <div className='m-10 flex-row'>
         {/* <Sidebar /> */}
         <StreamNow />
+        <Upload />
       </div>
     </>
   )
