@@ -2,6 +2,7 @@ import { Player, useCreateStream } from '@livepeer/react';
 
 import { useMemo, useState, useEffect } from 'react';
 import useLivePeer from '@/hooks/useLivePeer';
+import { FiCopy } from 'react-icons/fi';
 
 export default function StreamNow() {
   const [streamName, setStreamName] = useState<string>('');
@@ -17,7 +18,7 @@ export default function StreamNow() {
   const streamData = [
     {
       name: "Ingest URL",
-      data: stream?.rtmpIngestUrl,
+      data: "rtmp://rtmp.livepeer.com/live/",
     },
     {
       name: "Stream Key",
@@ -46,6 +47,19 @@ export default function StreamNow() {
     }
   }
 
+  const Copyable = (props: any) => {
+    const copyToClipboard = () => {
+      window.navigator.clipboard.writeText(props.copyText || props.text);
+    }
+  
+    return (
+      <span onClick={copyToClipboard} className='relative max-w-fit  group cursor-pointer  flex items-center gap-2'>
+  
+        {props.text}
+        <FiCopy size={20} color="#1a3073"/>
+      </span>
+    )
+  }
   // @ts-ignore
   // const playNow = (streamName, id) => {
   //   console.log("lets play this")
@@ -112,9 +126,9 @@ export default function StreamNow() {
             <h1 className="font-bold text-lg mt-4"><span className="text-gray-700 ">NOTE: </span><span className="text-red-500">To start a video stream, please use a broadcaster software like OBS/Streamyard</span></h1>
             {streamData.map((item) => {
               return (
-                <div key={item.name} className="mt-4">
-                  <h1 className='text-gray-500 font-semibold'>{item.name}</h1>
-                  <h1>{item.data}</h1>
+                <div key={item.name} className="flex  gap-3 mt-4">
+                  <h1 className='text-gray-500 font-semibold'>{item.name} :</h1>
+                  <Copyable text={item.data}/>
                 </div>
               )
             })}
@@ -126,7 +140,6 @@ export default function StreamNow() {
         Get All Playback Ids
       </button>
       <br />
-
       {
         playbackIds !== undefined && playbackIds.map(stream => {
           console.log("id", stream.playbackId)
