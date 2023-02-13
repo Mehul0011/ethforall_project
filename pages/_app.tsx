@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import Layout from "@/components/Layout"
 import { AuthProvider, CHAIN } from '@arcana/auth'
 import { ProvideAuth } from '@arcana/auth-react'
 import {
@@ -30,7 +31,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ProvideAuth provider={provider}>
       <LivepeerConfig client={livepeerClient}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+          </Layout>
       </LivepeerConfig>
     </ProvideAuth>
   )

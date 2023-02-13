@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Auth, useAuth } from "@arcana/auth-react";
 import ReactModal from "react-modal";
 import { FaTimes } from "react-icons/fa";
-
+import StreamNow from "./StreamNow";
 const onLogin = () => {
     // Route to authenticated page
 }
@@ -68,10 +68,6 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-
-            {/* TODO: Main content here */}
-            <div class="p-4 sm:ml-64">
-            </div>
         </>
 
     )

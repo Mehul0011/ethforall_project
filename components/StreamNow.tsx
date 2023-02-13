@@ -47,7 +47,7 @@ export default function StreamNow() {
   // }
 
   return (
-    <div className="h-screen w-70 z-100 bg-red">
+    <div className="h-screen z-100 bg-red">
       <input
         type="text"
         placeholder="Stream name"
