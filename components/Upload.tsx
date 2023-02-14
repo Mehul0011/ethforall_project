@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useAssetMetrics, useCreateAsset } from '@livepeer/react';
 import { useMemo } from 'react';
 import { IPFS } from './IPFS';
+import {BsCameraVideoFill} from 'react-icons/bs';
 
 function Upload() {
 

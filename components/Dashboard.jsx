@@ -24,7 +24,7 @@ export default function UserDashboard() {
     const getPlayBackIds = async () => {
         console.log("called");
         try {
-            const response = await livePeer.getAllSessions();
+            const response = await livePeer.getAllAssets();
             // @ts-ignore
             setPlaybackIds(response);
         } catch (error) {
@@ -37,7 +37,7 @@ export default function UserDashboard() {
             <h1 className="text-3xl font-bold pb-2 mb-4 ">Published Streams</h1>
 
             <button onClick={getPlayBackIds}>
-                Get All Playback Ids
+                Get All Assets
             </button>
             {
                 playbackIds !== undefined && playbackIds.map(stream => {
@@ -51,7 +51,6 @@ export default function UserDashboard() {
                                     <Player
                                         title={stream.name}
                                         playbackId={stream.playbackId}
-                                        autoPlay
                                         muted
                                     />
                                 </div>
