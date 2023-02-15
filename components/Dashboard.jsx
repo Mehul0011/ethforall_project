@@ -1,4 +1,5 @@
-import { Player, useCreateStream } from '@livepeer/react';
+import { ControlsContainer, Player, useCreateStream } from '@livepeer/react';
+import useSuperFluid from '@/hooks/useSuperFluid';
 
 import { useMemo, useState, useEffect } from 'react';
 import useLivePeer from '@/hooks/useLivePeer';
@@ -8,6 +9,7 @@ export default function UserDashboard() {
     const [streamName, setStreamName] = useState('');
     const [playbackIds, setPlaybackIds] = useState([]);
     const livePeer = useLivePeer();
+    const superFluid = useSuperFluid();
     // const [player, setPlayer] = useState(<></>);
 
     // const getPlayBackIds = async () => {
@@ -32,6 +34,13 @@ export default function UserDashboard() {
         }
         getPlayBackIds();
     }, []);
+
+    // useEffect(() => {
+    //     const res = superFluid.createFlow('1', '0x6D91A519E6bfBA9482e51093b5C3113890b37541');
+    //     console.log("super",res);
+    // }, [])
+    
+    
 
     return (
         <div className="h-screen z-0 p-10">
