@@ -3,10 +3,19 @@ import { BsCameraVideoFill } from "react-icons/bs";
 import { useAssetMetrics, useCreateAsset } from '@livepeer/react';
 import { useMemo } from 'react';
 import { IPFS } from './IPFS';
+import { useAuth } from '@arcana/auth-react'
+import { ethers } from 'ethers'
+import { sign } from "crypto";
+
 
 const Upload = () => {
   const [video, setVideo] = useState<File | undefined>(undefined);
+  const [video2, setVideo2] = useState();
   const videoRef = useRef<HTMLInputElement>();
+
+  const auth = useAuth();
+  const [walletAddress, setWalletAddress] = useState('');
+
 
   const handleVideoChange = (e:any) => {
     // @ts-ignore
@@ -36,12 +45,22 @@ const Upload = () => {
     progress,
     error,
   } = useCreateAsset(
-    video
+    video2
       ? {
-        sources: [{ name: video.name, file: video }],
+        sources: [{ name: video2.name, file: video2 }],
       }
       : null,
   );
+
+  useEffect(() => {
+    const f = async () => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        console.log("metamask", signer.getAddress());
+    }
+    f();
+}, [])
 
 
   useEffect(() => {
@@ -74,18 +93,19 @@ const Upload = () => {
                   ref={videoRef}
                   multiple={false}
                   //onChange={handleVideoChange}
-                  onChange={(e) => {
-                    if(e.target.files){
-                      setVideo(e.target.files[0]);
-                    }
-                  }}
+                  // onChange={(e) => {
+                  //   if(e.target.files){
+                  //     setVideo(e.target.files[0]);
+                  //   }
+                  // }}
                   hidden
                   accept="video/*"
-                // onChange={(e) => {{
-                //   if (e.target.files) {
-                //     setVideo(e.target.files[0]);
-                //   }
-                // }; handleVideoChange}}
+                  onChange={(e) => {
+                    if (e.target.files) {
+                      setVideo2(e.target.files[0]);
+                    }
+                    handleVideoChange(e)
+                  }}
                 />
                 {!video && (
                   <button
@@ -105,6 +125,7 @@ const Upload = () => {
               <button
                 disabled={status === 'loading' || !createAsset}
                 onClick={() => {
+                  console.log("video", video2);
                   createAsset?.();
                 }}
                 className="px-6 py-2 text-white text-xl font-semibold rounded-lg bg-gradient-to-r from-emerald-500 to-sky-600"
