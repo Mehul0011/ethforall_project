@@ -116,7 +116,7 @@ const Upload = () => {
           {isLoading && (
             <div className="text-xl font-bold pb-2 mt-4 mb-4 text-primary">Creating Asset...</div>
           )}
-           {assets?.map((asset) => (
+           {assets && assets?.map((asset) => (
           <div key={asset.id}>
             <div>
               <div>Asset Id: {asset?.id}</div>

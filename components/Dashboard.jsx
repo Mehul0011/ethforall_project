@@ -9,58 +9,64 @@ export default function UserDashboard() {
     const [playbackIds, setPlaybackIds] = useState([]);
     const livePeer = useLivePeer();
     // const [player, setPlayer] = useState(<></>);
-    const {
-        mutate: createStream,
-        data: stream,
-        status,
-    } = useCreateStream({ name: streamName, record: true });
 
-    const isLoading = useMemo(() => status === 'loading', [status]);
+    // const getPlayBackIds = async () => {
+    //     console.log("called");
+    //     try {
+    //         const response = await livePeer.getAllAssets();
+    //         // @ts-ignore
+    //         setPlaybackIds(response);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     useEffect(() => {
-        console.log("ye hai stream", stream);
-    }, [stream]);
-
-    const getPlayBackIds = async () => {
-        console.log("called");
-        try {
-            const response = await livePeer.getAllAssets();
-            // @ts-ignore
-            setPlaybackIds(response);
-        } catch (error) {
-            console.error(error);
+        const getPlayBackIds = async () => {
+            try {
+                const response = await livePeer.getAllAssets();
+                setPlaybackIds(response);
+            } catch (error) {
+                console.error(error);
+            }
         }
-    }
+        getPlayBackIds();
+    }, []);
 
     return (
         <div className="h-screen z-0 p-10">
-            <h1 className="text-3xl font-bold pb-2 mb-4 ">Published Streams</h1>
-
-            <button onClick={getPlayBackIds}>
-                Get All Assets
-            </button>
-            {
-                playbackIds !== undefined && playbackIds.map(stream => {
-                    console.log("id", stream.playbackId)
-                    if (stream.playbackId)
-                        return (
-                            <>
-                                {/* <button onClick={() => playNow("live Now", id)}> Play Now {id}</button> */}
-                                {/* {player} */}
-                                <div className="grid grid-flow-col auto-cols-max">
-                                    <Player
-                                        title={stream.name}
-                                        playbackId={stream.playbackId}
-                                        muted
-                                    />
+            <h1 className="text-3xl font-bold pb-2 mb-4 ">Published Videos</h1>
+            <div className=" grid grid-cols-3 items-start justify-center gap-2">
+                {
+                    playbackIds.map(stream => {
+                        if (stream.playbackId) {
+                            return (
+                                <div key={stream.playbackId}>
+                                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+                                        <a href="#">
+                                            <div className="w-full">
+                                                <Player
+                                                    title={stream.name}
+                                                    playbackId={stream.playbackId}
+                                                    muted
+                                                />
+                                            </div>
+                                        </a>
+                                        <div class="p-5">
+                                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-emerald-500 to-sky-600 rounded-lg">
+                                                Send Tip                                            
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <br />
-                            </>
-                        )
-                    else return <></>
-                })
 
-            }
+                            )
+                        } else {
+                            return null;
+                        }
+                    })
+                }
+            </div>
         </div>
     );
 };
