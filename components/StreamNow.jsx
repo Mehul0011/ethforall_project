@@ -3,6 +3,7 @@ import { Player, useCreateStream } from '@livepeer/react';
 import { useMemo, useState, useEffect } from 'react';
 import useLivePeer from '@/hooks/useLivePeer';
 import { FiCopy } from 'react-icons/fi';
+import ReactPlayer from 'react-player';
 
 export default function StreamNow() {
   const [streamName, setStreamName] = useState('');
@@ -38,12 +39,12 @@ export default function StreamNow() {
     const copyToClipboard = () => {
       window.navigator.clipboard.writeText(props.copyText || props.text);
     }
-  
+
     return (
       <span onClick={copyToClipboard} className='relative max-w-fit  group cursor-pointer  flex items-center gap-2'>
-  
+
         {props.text}
-        <FiCopy size={20} color="#1a3073"/>
+        <FiCopy size={20} color="#1a3073" />
       </span>
     )
   }
@@ -117,7 +118,7 @@ export default function StreamNow() {
               return (
                 <div key={item.name} className="flex  gap-3 mt-4">
                   <h1 className='text-gray-500 font-semibold'>{item.name} :</h1>
-                  <Copyable text={item.data}/>
+                  <Copyable text={item.data} />
                 </div>
               )
             })}

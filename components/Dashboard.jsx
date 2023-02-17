@@ -1,81 +1,54 @@
-import { ControlsContainer, Player, useCreateStream } from '@livepeer/react';
-import useSuperFluid from '@/hooks/useSuperFluid';
+import { useState } from 'react'
+import { Tab } from '@headlessui/react'
+import WatchStream from './WatchStream'
+import Assets from './Assets'
 
-import { useMemo, useState, useEffect } from 'react';
-import useLivePeer from '@/hooks/useLivePeer';
-import { FiCopy } from 'react-icons/fi';
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
 
-export default function UserDashboard() {
-    const [streamName, setStreamName] = useState('');
-    const [playbackIds, setPlaybackIds] = useState([]);
-    const livePeer = useLivePeer();
-    const superFluid = useSuperFluid();
-    // const [player, setPlayer] = useState(<></>);
+export default function Example() {
 
-    // const getPlayBackIds = async () => {
-    //     console.log("called");
-    //     try {
-    //         const response = await livePeer.getAllAssets();
-    //         // @ts-ignore
-    //         setPlaybackIds(response);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
-    useEffect(() => {
-        const getPlayBackIds = async () => {
-            try {
-                const response = await livePeer.getAllAssets();
-                setPlaybackIds(response);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        getPlayBackIds();
-    }, []);
-
-    // useEffect(() => {
-    //     const res = superFluid.createFlow('1', '0x6D91A519E6bfBA9482e51093b5C3113890b37541');
-    //     console.log("super",res);
-    // }, [])
-    
-    
+    const tabs = [
+        'Published Streams',
+        'Uploaded Videos',
+    ]
 
     return (
         <div className="h-screen z-0 p-10">
-            <h1 className="text-3xl font-bold pb-2 mb-4 ">Published Videos</h1>
-            <div className=" grid grid-cols-3 items-start justify-center gap-2">
-                {
-                    playbackIds.map(stream => {
-                        if (stream.playbackId) {
-                            return (
-                                <div key={stream.playbackId}>
-                                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-                                        <a href="#">
-                                            <div className="w-full">
-                                                <Player
-                                                    title={stream.name}
-                                                    playbackId={stream.playbackId}
-                                                    muted
-                                                />
-                                            </div>
-                                        </a>
-                                        <div class="p-5">
-                                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-emerald-500 to-sky-600 rounded-lg">
-                                                Send Tip                                            
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            )
-                        } else {
-                            return null;
-                        }
-                    })
-                }
-            </div>
-        </div>
-    );
-};
+            <h1 className="text-3xl font-bold pb-2 mb-4 ">Dashboard</h1>
+            <Tab.Group>
+                <Tab.List className="flex select-none  text-gray-400 p-1 gap-1 items-center bg-gray-900  rounded-lg  my-4 overflow-hidden ">
+                    {tabs.map((category) => (
+                        <Tab
+                            key={category}
+                            className={({ selected }) =>
+                                classNames(
+                                    'w-full rounded-lg py-2.5 font-medium leading-5 text-white text-lg',
+                                    'ring-white ring-opacity-60 ring-offset-2 ring-offset-gray-400 focus:outline-none focus:ring-2',
+                                    selected
+                                        ? 'bg-gradient-to-r from-emerald-500 to-sky-600 shadow'
+                                        : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                )
+                            }
+                        >
+                            {category}
+                        </Tab>
+                    ))}
+                </Tab.List>
+                <Tab.Panels>
+                    <Tab.Panel>
+                        <div className="flex w-full flex-wrap gap-4">
+                            <WatchStream />
+                        </div>
+                    </Tab.Panel>
+                    <Tab.Panel>
+                        <div className="flex w-full flex-wrap gap-4">
+                            <Assets />
+                        </div>
+                    </Tab.Panel>
+                </Tab.Panels>
+            </Tab.Group>
+        </div >
+    )
+}

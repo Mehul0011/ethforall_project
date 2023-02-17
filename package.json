@@ -12,6 +12,7 @@
     "@arcana/auth": "^1.0.0",
     "@arcana/auth-react": "^0.0.3",
     "@arcana/auth-wagmi": "^0.0.1",
+    "@headlessui/react": "^1.7.11",
     "@livepeer/react": "^2.2.0",
     "@livepeer/video-nft": "^0.3.6",
     "@next/font": "13.1.6",
@@ -29,6 +30,7 @@
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.7.1",
     "react-modal": "^3.16.1",
+    "react-player": "^2.11.2",
     "typescript": "4.9.5"
   },
   "devDependencies": {

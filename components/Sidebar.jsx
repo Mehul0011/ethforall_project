@@ -32,6 +32,11 @@ const Sidebar = () => {
             name: "Mint NFT",
             href: "/upload",
             icon: <FaUpload size={25} fill/>
+        },
+        {
+            name: "Live",
+            href: "/live",
+            icon: <FaUpload size={25} fill/>
         }
     ];
     return (

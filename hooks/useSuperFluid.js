@@ -34,7 +34,7 @@ const useSuperfluid = () => {
       const provider = new ethers.providers.Web3Provider(ethereum);
     //   await provider.send("eth_requestAccounts", []);
       let { chainId } = await provider.getNetwork();
-      console.log("chain lk", chainId);
+      console.log("chain id", chainId);
       const sf = await Framework.create({
         chainId: chainId,
         provider: provider,

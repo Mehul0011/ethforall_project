@@ -29,7 +29,7 @@ const useLivePeer = () => {
             const response = await httpClient.get('/stream');
             // const response = await axios.get('https://livepeer.studio/api/stream', headers);
 
-            console.log("streams", response.data);
+            console.log("recording", response.data);
             return response.data;
         } catch (err) {
             console.error(err);
@@ -68,3 +68,5 @@ const useLivePeer = () => {
 }
 
 export default useLivePeer;
+
+9424910827  
