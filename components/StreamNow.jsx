@@ -3,7 +3,6 @@ import { Player, useCreateStream } from '@livepeer/react';
 import { useMemo, useState, useEffect } from 'react';
 import useLivePeer from '@/hooks/useLivePeer';
 import { FiCopy } from 'react-icons/fi';
-import ReactPlayer from 'react-player';
 
 export default function StreamNow() {
   const [streamName, setStreamName] = useState('');

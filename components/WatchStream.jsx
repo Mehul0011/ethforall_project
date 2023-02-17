@@ -26,7 +26,7 @@ export default function UserDashboard() {
 
     return (
         <div className="h-screen mt-4">
-            <div className="grid grid-cols-2 items-start gap-x-32 gap-y-6">
+            <div className="grid grid-cols-3 items-start gap-2">
                 {
                     playbackIds && playbackIds.map(stream => {
                         if (stream.playbackId && stream.recordingStatus === "ready") {
