@@ -12,12 +12,13 @@ export default function Navbar() {
     const [modalOpen, setModalOpen] = useState(false);
     return (
         <>
-            <nav class="fixed top-0 z-0 w-full bg-gray-500 border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <nav class="fixed top-0 z-1 w-full bg-[#FFF] border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <div class="px-3 py-3 lg:px-5 lg:pl-3">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center justify-start">
                             <div className="flex items-center gap-3">
-                                <h1 className="font-display font-bold text-2xl">DStream</h1>
+                            <img src="/logo.svg" class="h-8" alt="StreamHub Logo" /> 
+                                <h1 className="font-display font-bold text-2xl">StreamHub</h1>
                             </div>
                         </div>
                         <div class="flex items-center">
@@ -68,11 +69,6 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-
-            {/* TODO: Main content here */}
-            <div class="p-4 sm:ml-64">
-                
-            </div>
         </>
 
     )
