@@ -7,10 +7,11 @@ import { useAuth } from '@arcana/auth-react'
 import { ethers } from 'ethers'
 import { sign } from "crypto";
 
+declare var window: any;
 
 const Upload = () => {
   const [video, setVideo] = useState<File | undefined>(undefined);
-  const [video2, setVideo2] = useState();
+  const [video2, setVideo2] = useState<File | undefined>();
   const videoRef = useRef<HTMLInputElement>();
 
   const auth = useAuth();
