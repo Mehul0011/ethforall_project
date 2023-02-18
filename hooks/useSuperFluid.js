@@ -54,6 +54,7 @@ const useSuperfluid = () => {
     //Approve Usdcx
     const usdcx = await sf.loadSuperToken(USDCX_ADDRESS);
     const signerAddress = await signer.getAddress();
+    console.log("above approve", signer, signerAddress)
     const approveTxn = await usdcx.approve(
       {
         receiver:signerAddress,
@@ -69,6 +70,7 @@ const useSuperfluid = () => {
     const createFlowOperation = await sf.cfaV1.createFlow({
         flowRate: _flowRate,
         receiver: _receiver,
+        sender: signerAddress,
         superToken: USDCX_ADDRESS,
     });
 
@@ -77,10 +79,11 @@ const useSuperfluid = () => {
       const result = await createFlowOperation.exec(signer);
       console.log("money res",  result);
 
-    //   toast.success("Subscription flow started successfully.")
-      return {}
+      // toast.success("Subscription flow started successfully.")
+      return true;
     } catch (err) {
       console.error(err);
+      return false;
     }
   };
 

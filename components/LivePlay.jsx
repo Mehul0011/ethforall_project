@@ -20,6 +20,7 @@ import {
 export default function LivePlay() {
   const [streamName, setStreamName] = useState('');
   const [playbackIds, setPlaybackIds] = useState([]);
+  const [flowStarted, setFlowStarted] = useState(false);
   const livePeer = useLivePeer();
   const superFluid = useSuperFluid();
   const auth = useAuth();
@@ -68,10 +69,11 @@ export default function LivePlay() {
   }, []);
 
 
-  const startFlow = () => {
-    setFlowLoading(true);
-    const res = superFluid.createFlow('1', '0x6D91A519E6bfBA9482e51093b5C3113890b37541');
-    setFlowLoading(false);
+  const startFlow = async () => {
+    console.log("super");
+    const res = await superFluid.createFlow('1', '0x6D91A519E6bfBA9482e51093b5C3113890b37541');
+    if(res)
+      setFlowStarted(true);
     console.log("super",res);
   }
 
@@ -111,13 +113,16 @@ export default function LivePlay() {
                           muted
                         />
                         <h1>more props</h1> */}
+                        <h1>Stream Name: {stream.name}</h1>
+                        <button onClick={startFlow}>Start Flow</button>
+                        {flowStarted && (
                         <Player title={stream?.name} playbackId={stream?.playbackId}>
                           <Title/>
                           <ControlsContainer
                             middle={<Progress />}
                             left={
                               <>
-                                <PlayButton onClick={startFlow()} />
+                                <PlayButton  />
                                 <Volume showSlider={false} />
                                 <TimeDisplay />
                               </>
@@ -125,6 +130,7 @@ export default function LivePlay() {
                             right={<PictureInPictureButton />}
                           />
                         </Player>
+                        )}
                       </div>
                     </a>
                     <div class="p-5">

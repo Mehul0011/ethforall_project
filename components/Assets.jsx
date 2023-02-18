@@ -1,5 +1,6 @@
 import { ControlsContainer, Player, useCreateStream } from '@livepeer/react';
 import useSuperFluid from '@/hooks/useSuperFluid';
+import useSendTip from '@/hooks/useSendTip';
 
 import { useMemo, useState, useEffect } from 'react';
 import useLivePeer from '@/hooks/useLivePeer';
@@ -9,6 +10,7 @@ import ReactPlayer from 'react-player';
 export default function Assets() {
     const [streamName, setStreamName] = useState('');
     const [playbackIds, setPlaybackIds] = useState([]);
+    const { signTransaction } = useSendTip();
     const livePeer = useLivePeer();
     const superFluid = useSuperFluid();
     // const [player, setPlayer] = useState(<></>);
@@ -37,26 +39,30 @@ export default function Assets() {
         getPlayBackIds();
     }, []);
 
+    const handleSendTip = () => {
+
+    }
+
     // useEffect(() => {
     //     const res = superFluid.createFlow('1', '0x6D91A519E6bfBA9482e51093b5C3113890b37541');
     //     console.log("super",res);
     // }, [])
 
-    async function signTransaction() {
+    // async function signTransaction() {
 
-        const { sig } = await provider.request({
-            method: 'eth_signTransaction',
-            params: [
-                {
-                    from, // sender account address
-                    gasPrice: 0,
-                    to: '0xE28F01Cf69f27Ee17e552bFDFB7ff301ca07e780', // receiver account address
-                    value: '0x0de0b6b3a7640000',
-                },
-            ],
-        })
-        console.log({ sig })
-    }
+    //     const { sig } = await provider.request({
+    //         method: 'eth_signTransaction',
+    //         params: [
+    //             {
+    //                 from, // sender account address
+    //                 gasPrice: 0,
+    //                 to: '0xE28F01Cf69f27Ee17e552bFDFB7ff301ca07e780', // receiver account address
+    //                 value: '0x0de0b6b3a7640000',
+    //             },
+    //         ],
+    //     })
+    //     console.log({ sig })
+    // }
 
     return (
         <div className="h-screen mt-4">  
@@ -84,9 +90,9 @@ export default function Assets() {
                                             </div>
                                         </a>
                                         <div class="p-5">
-                                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-emerald-500 to-sky-600 rounded-lg">
+                                            <button onClick={(e) => signTransaction("0.08", "0xEA3bF30b8bbbf81B2dd0a42CF2f9cf4269ee1CF0")} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-emerald-500 to-sky-600 rounded-lg">
                                                 Send Tip
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
