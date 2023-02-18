@@ -7,7 +7,7 @@ const useLivePeer = () => {
 
     httpClient.interceptors.request.use(
         (req) => {
-            req.headers['Authorization'] = `Bearer fcd783b5-749d-41f5-b0ed-149949e3de6c`
+            req.headers['Authorization'] = `Bearer d5a4af1d-f1b5-4d78-a7d0-b80192d8a086`
             return req
         }
     );
