@@ -1,9 +1,7 @@
 import StreamNow from "@/components/StreamNow";
 const LiveStream = () => {
     return (
-        <>
-            <StreamNow />
-        </>
+        <StreamNow />
     );
 };
 export default LiveStream;

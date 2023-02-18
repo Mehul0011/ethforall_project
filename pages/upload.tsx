@@ -1,5 +1,5 @@
-//import Upload from "@/components/Upload"
-import Upload from "@/components/Video";
+import Upload from "@/components/Upload";
+
 const Videos = () => {
     return (
         <Upload/>

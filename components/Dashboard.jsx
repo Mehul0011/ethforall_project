@@ -1,13 +1,12 @@
-import { useState } from 'react'
 import { Tab } from '@headlessui/react'
-import WatchStream from './WatchStream'
+import PublishedStream from './PublishedStream'
 import Assets from './Assets'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function UserDashboard() {
 
     const tabs = [
         'Published Streams',
@@ -39,7 +38,7 @@ export default function Example() {
                 <Tab.Panels>
                     <Tab.Panel>
                         <div className="flex w-full flex-wrap gap-4">
-                            <WatchStream />
+                            <PublishedStream />
                         </div>
                     </Tab.Panel>
                     <Tab.Panel>

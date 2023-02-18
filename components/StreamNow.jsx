@@ -48,22 +48,6 @@ export default function StreamNow() {
     )
   }
 
-
-  // @ts-ignore
-  // const playNow = (streamName, id) => {
-  //   console.log("lets play this")
-  //   return (
-  //     setPlayer(<Player
-  //       title={streamName as any}
-  //       playbackId={id as any}
-  //       autoPlay
-  //       muted
-  //     />)
-
-  //   )
-
-  // }
-
   return (
     <div className="h-screen z-0 p-10" >
       <h1 className="text-3xl font-bold pb-2 mb-4 ">Livestream</h1>
@@ -102,7 +86,6 @@ export default function StreamNow() {
       {stream?.playbackId && (
         <>
           <div className="pl-36">
-            {/* <h1 className="text-xl font-semibold">{stream?.name}</h1> */}
             <div className="h-4/6 w-4/6">
               <Player
                 title={stream?.name}
