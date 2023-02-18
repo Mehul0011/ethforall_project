@@ -97,7 +97,7 @@ export default function LivePlay() {
   return (
     <div className="h-screen z-0 p-10">
       <h1 className="text-3xl font-bold pb-2 mb-4 ">Watch Live Streams</h1>
-      <div className=" grid grid-cols-3 items-start justify-center gap-2">
+      <div className=" grid grid-cols-2 items-start justify-center gap-4">
         {
           playbackIds && playbackIds.map(stream => {
             if (stream.playbackId && stream.isActive) {
@@ -105,7 +105,7 @@ export default function LivePlay() {
                 <div key={stream.playbackId}>
                   <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
                     <a href="#">
-                      <div className="w-full h-1/3">
+                      <div className="w-full h-2/3">
                         {/* <Player
                           title={stream.name}
                           playbackId={stream.playbackId}
@@ -133,11 +133,11 @@ export default function LivePlay() {
                         )}
                       </div>
                     </a>
-                    <div class="p-5">
+                    {/* <div class="p-5">
                       <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-emerald-500 to-sky-600 rounded-lg">
                         Send Tip
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 

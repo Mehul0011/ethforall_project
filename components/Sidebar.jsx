@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { AiFillHome } from 'react-icons/ai'
 import { FaUpload, FaUser } from 'react-icons/fa'
-import { BsBroadcastPin } from 'react-icons/bs'
+import { BsBroadcastPin, BsYoutube } from 'react-icons/bs'
 import { useRouter } from "next/router";
 
 const Sidebar = () => {
@@ -23,20 +23,15 @@ const Sidebar = () => {
             href: "/livestream",
             icon: <BsBroadcastPin size={25} fill/>,
         },
-        // {
-        //     name: "My Channel",
-        //     href: "/user",
-        //     icon: <FaUser size={25} fill/>
-        // },
         {
             name: "Mint NFT",
             href: "/upload",
             icon: <FaUpload size={25} fill/>
         },
         {
-            name: "Live",
+            name: "Watch Live",
             href: "/live",
-            icon: <FaUpload size={25} fill/>
+            icon: <BsYoutube size={25} fill/>
         }
     ];
     return (
