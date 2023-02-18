@@ -3,12 +3,11 @@ import useLivePeer from '@/hooks/useLivePeer';
 import ReactPlayer from 'react-player';
 import SendTip from './SendTip';
 
-export default function WatchStream() {
-    const [streamName, setStreamName] = useState('');
+export default function PublishedStream() {
     const [playbackIds, setPlaybackIds] = useState([]);
     const livePeer = useLivePeer();
     const [tipModal, setTipModal] = useState(false);
-    
+
     const handleSendTip = () => {
         setTipModal(true);
     }
@@ -37,20 +36,15 @@ export default function WatchStream() {
                                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
                                         <a href="#">
                                             <div className="w-full">
-                                                {/* <Player
-                                                    title={stream.name}
-                                                    playbackId={stream.playbackId}
-                                                    autoPlay
-                                                />  */}
-                                                <ReactPlayer 
-                                                controls
-                                                width="100%"
-                                                height="90%"
-                                                url={stream.recordingUrl} />
+                                                <ReactPlayer
+                                                    controls
+                                                    width="100%"
+                                                    height="90%"
+                                                    url={stream.recordingUrl} />
                                             </div>
                                         </a>
                                         <div class="p-5 ml-20">
-                                            <button 
+                                            <button
                                                 onClick={handleSendTip}
                                                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-emerald-500 to-sky-600 rounded-lg">
                                                 Send Tip

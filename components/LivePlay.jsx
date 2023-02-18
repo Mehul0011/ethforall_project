@@ -1,16 +1,12 @@
 import useSuperFluid from '@/hooks/useSuperFluid';
-
-import { useMemo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useLivePeer from '@/hooks/useLivePeer';
-import { FiCopy } from 'react-icons/fi';
-import ReactPlayer from 'react-player';
 import { useAuth } from '@arcana/auth-react';
 import {
   ControlsContainer,
   PictureInPictureButton,
   PlayButton,
   Player,
-  Poster,
   Progress,
   TimeDisplay,
   Title,
@@ -33,27 +29,6 @@ export default function LivePlay() {
       setWalletAddress(auth.user?.address);
     }
   }, []);
-
-  const videoStart = () => {
-    console.log("Video started");
-  }
-
-  const videoStop = () => {
-    console.log("Video stopped");
-  }
-
-  // const [player, setPlayer] = useState(<></>);
-
-  // const getPlayBackIds = async () => {
-  //     console.log("called");
-  //     try {
-  //         const response = await livePeer.getAllAssets();
-  //         // @ts-ignore
-  //         setPlaybackIds(response);
-  //     } catch (error) {
-  //         console.error(error);
-  //     }
-  // }
 
   useEffect(() => {
     const getPlayBackIds = async () => {
@@ -106,13 +81,6 @@ export default function LivePlay() {
                   <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
                     <a href="#">
                       <div className="w-full h-2/3">
-                        {/* <Player
-                          title={stream.name}
-                          playbackId={stream.playbackId}
-                          autoPlay
-                          muted
-                        />
-                        <h1>more props</h1> */}
                         <h1>Stream Name: {stream.name}</h1>
                         <button onClick={startFlow}>Start Flow</button>
                         {flowStarted && (
@@ -133,11 +101,6 @@ export default function LivePlay() {
                         )}
                       </div>
                     </a>
-                    {/* <div class="p-5">
-                      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-emerald-500 to-sky-600 rounded-lg">
-                        Send Tip
-                      </a>
-                    </div> */}
                   </div>
                 </div>
 

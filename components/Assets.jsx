@@ -1,5 +1,3 @@
-import useSuperFluid from '@/hooks/useSuperFluid';
-import useSendTip from '@/hooks/useSendTip';
 import { useState, useEffect } from 'react';
 import useLivePeer from '@/hooks/useLivePeer';
 import ReactPlayer from 'react-player';
